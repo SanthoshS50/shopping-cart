@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 
 function Card({cart,setCart}) {
-  
+  let [toggle,setToggle]=useState(true)
   return <div className="col mb-5">
   <div className="card h-100">
       <div className="badge bg-dark text-white position-absolute" style={{top: "0.5rem", right: "0.5rem"}}>Sale</div>
@@ -15,9 +15,19 @@ function Card({cart,setCart}) {
       </div>
       <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
           <div className="text-center">
-            <button className="btn btn-outline-dark mt-auto" onClick={()=>{setCart(cart+1)}}>
-              Add to cart
+            {
+            toggle?<button className="btn btn-outline-dark mt-auto" onClick={()=>{
+              setCart(cart+1) 
+              setToggle(false)
+              }}>
+              Add to Cart
+            </button>:<button className="btn btn-outline-dark mt-auto" onClick={()=>{
+              setCart(cart-1) 
+              setToggle(true)
+              }}>
+              Remove from Cart
             </button>
+            }
       </div>
       </div>
   </div>
